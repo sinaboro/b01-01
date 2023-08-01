@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h3 th:text="${list}"></h3>
+    <hr/>
+    <h3> [[${list}]]</h3>
+    <hr/>
+    <h3 th:text="${msg}"></h3>
+    <h3>[[${msg}]]</h3>
+    <hr/>
+
+    <hr/>
+    <h3 th:utext="${msg}"></h3>
+    <h3>[(${msg})]</h3>
+    <hr/>
+
+    <script th:inline="javascript">
+        var list= [[${list}]];
+        var gender = [[${gender}]];
+
+        console.log(list);
+        console.log(gender);
+    </script>
+
+
+
+
+
+
+<div th:with="num1 = ${10}, num2 = ${20}">
+    <h3 th:text="${num1+num2}" :></h3>
+</div>
+
+<div th:with="ls = ${list}">
+    <h1 th:text="${ls}" :></h1>
+</div>
+<hr/>
+<ul>
+    <h3><li th:each="str : ${list}" th:text="${str}"></li></h3>
+</ul>
+<hr/>
+
+<ul>
+    <th:block th:each="str : ${list}">
+        <li>[[${str}]]</li>
+    </th:block>
+</ul>
+
+<hr/>
+<ul>
+    <li th:each="str, status : ${list}">
+        [[${status.index}]] :  : [[${str}]]
+    </li>
+</ul>
+
+<hr/>
+<ul>
+    <li th:each="str, status : ${list}">
+        [[${status.index}]] :  : [[${str}]]<br>
+        [[${status.count}]] <br>
+        [[${status.size}]] <br>
+        [[${status.first}]]<br>
+        [[${status.last}]]<br>
+         <hr/>
+    </li>
+</ul>
+
+
+
+    <!--List<String> list = Arrays.asList("AAA","BBB","CCC","DDD");-->
+<hr/>
+<ul>
+    <li th:each="str,status : ${list}">
+        <span th:if = "${status.odd}"> ODD - [[${str}]]</span>
+        <span th:unless= "${status.odd}"> Even - [[${str}]]</span>
+    </li>
+</ul>
+
+
+<hr/>
+<ul>
+    <li th:each="str,status : ${list}">
+        <span th:if = "${status.even}"> EVEN - [[${str}]]</span>
+        <span th:unless= "${status.even}"> ODD - [[${str}]]</span>
+    </li>
+</ul>
+
+<hr/>
+<ul>
+    <li th:each="str,status : ${list}">
+        <span th:if = "${status.first}">[[${str}]]</span>
+    </li>
+</ul>
+
+<hr/>
+<ul>
+    <li th:each="str,status : ${list}">
+        <span th:if = "${status.last}">[[${str}]]</span>
+    </li>
+</ul>
+
+<hr/>
+<ul>
+    <li th:each="str,status : ${list}">
+        <span th:switch="${status.even}">
+            <span th:case=true>[[${str}]]-짝수</span>
+            <span th:case=false>[[${str}]]-홀수</span>
+        </span>
+    </li>
+</ul>
+
+<hr/>
+
+<a th:href="@{/hello}">Go To /hello</a><br>
+<a th:href="@{/helloArr}">Go To /helloArr</a>
+
+
+
+
+</body>
+</html>
