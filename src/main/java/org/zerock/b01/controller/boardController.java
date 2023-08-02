@@ -57,4 +57,11 @@ public class boardController {
     }
 
 
+    @GetMapping("/read")
+    public void read(Long bno, PageRequestDTO requestDTO, Model model){
+        BoardDTO boardDTO = boardService.readOne(bno);
+
+        model.addAttribute("dto", boardDTO);
+    }
+
 }
