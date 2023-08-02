@@ -67,7 +67,7 @@ public class BoardServiceImpl implements  BoardService{
     @Override
     public PageResponseDTO<BoardDTO> list(PageRequestDTO pageRequestDTO) {
         String[] types = pageRequestDTO.getTypes();  //t c w
-        String keyword = pageRequestDTO.getKeyword();  //1
+        String keyword = pageRequestDTO.getKeyword();  //2
         Pageable pageable = pageRequestDTO.getPageable("bno"); //0,10 bno.desc
 
         Page<Board> result = boardReposotory.searchAll(types,keyword,pageable);
@@ -79,12 +79,15 @@ public class BoardServiceImpl implements  BoardService{
         result.getContent().forEach(board->log.info(board));
         log.info("----------------------------------------------------------");
         //---------------------------
+
+        //board(entity)---> boardDTO로 변환(mapper)
         List<BoardDTO> dtoList = result.getContent().stream()
                 .map(board -> modelMapper.map(board,BoardDTO.class)).
                 collect(Collectors.toList());
 
         PageResponseDTO<BoardDTO> pageResponseDTO =
-                new PageResponseDTO<>(pageRequestDTO, dtoList, (int) result.getTotalElements());
+                new PageResponseDTO<>(pageRequestDTO,
+                        dtoList, (int) result.getTotalElements());
 
         return pageResponseDTO;
 

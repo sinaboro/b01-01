@@ -40,18 +40,24 @@ dependencies {
     testCompileOnly 'org.projectlombok:lombok'
     testAnnotationProcessor 'org.projectlombok:lombok'
 
-    // https://mvnrepository.com/artifact/nz.net.ultraq.thymeleaf/thymeleaf-layout-dialect
-    implementation group: 'nz.net.ultraq.thymeleaf', name: 'thymeleaf-layout-dialect', version: '3.1.0'
+    implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:3.1.0'
 
     implementation "com.querydsl:querydsl-jpa:${queryDslVersion}"
+
     annotationProcessor(
+
             "javax.persistence:javax.persistence-api",
+
             "javax.annotation:javax.annotation-api",
-            "com.querydsl:querydsl-apt:${queryDslVersion}:jpa"
-    )
+
+            "com.querydsl:querydsl-apt:${queryDslVersion}:jpa")
+
 
     implementation 'org.modelmapper:modelmapper:3.1.0'
+
     implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:3.1.0'
+
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
 
 }
 

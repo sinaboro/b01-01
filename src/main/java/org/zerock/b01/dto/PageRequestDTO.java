@@ -24,7 +24,7 @@ public class PageRequestDTO {
     private int size=10;
 
     private String type;  //검색 t,c, w, tc,tw,   tcw
-    private String keyword; //검색 단어   java
+    private String keyword; //검색 단어   2
 
     public String[] getTypes(){  // tcw   -> t c w ==> 문자열을 개별 문자로 분해해서 스트링 배열 저장
         if(type == null || type.isEmpty()){
