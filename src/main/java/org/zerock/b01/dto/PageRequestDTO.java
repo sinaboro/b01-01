@@ -42,10 +42,12 @@ public class PageRequestDTO {
 
     public String getLink() {   //검색조건과 페이징 조건을 문자열로 구성
 
+
+
         if(link == null){
             StringBuilder builder = new StringBuilder();
 
-            builder.append("page=" + this.page);   //page=0
+            builder.append("page=" + this.page);   //page=7
 
             builder.append("&size=" + this.size);  //page=0&size=10
 
@@ -53,13 +55,13 @@ public class PageRequestDTO {
                 builder.append("&type=" + type);   //page=0&size=10&type=tcw
             }
 
-            if(keyword != null){
+            if(keyword != null){    //&page=7&size=10&keyword=
                 try {  //page=0&size=10&type=tcw&keyword=java
                     builder.append("&keyword=" + URLEncoder.encode(keyword,"UTF-8"));
                 } catch (UnsupportedEncodingException e) {
                 }
             }
-            link = builder.toString(); // "page=0&size=10&type=tcw&keyword=java"
+            link = builder.toString(); // page=0&size=10
         }
         return link;
     }

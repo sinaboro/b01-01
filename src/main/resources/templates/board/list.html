@@ -48,13 +48,14 @@
                             <th scope="col">Writer</th>
                             <th scope="col">RegDate</th>
                         </tr>
-                        </thead>
+                        </thead>           <!-- "page=0&size=10" -->
                         <tbody th:with="link= ${pageRequestDTO.getLink()}">
                             <tr th:each="dto:${responseDTO.dtoList}">
                                 <th scope="row">[[${dto.bno}]]</th>
                                 <td>
-<!--                                 <a th:href="|@{/board/read(bno=${dto.bno})}&${link}|">[[${dto.title}]]</a>-->
-                                 <a th:href="|@{/board/read(bno=${dto.bno})}&${link}">[[${dto.title}]]</a>
+                                <!--<a th:href="|@{/board/read(bno=${dto.bno})}&${link}|">[[${dto.title}]]</a>-->
+                                <a th:href="|@{/board/read(bno=${dto.bno})}&${link}|">[[${dto.title}]]</a>
+
                                 </td>
                                 <td>[[${dto.writer}]]</td>
                                 <td>[[${#temporals.format(dto.regDate, 'yyyy-MM-dd')}]]</td>
@@ -84,6 +85,7 @@
         </div>
     </div>
 
+    <!--모달창 -->
     <div class="modal" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -92,7 +94,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <p>Modal body text goes here.</p>
+                    <p id="modalContent">Modal body text goes here.</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -100,7 +102,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> <!-- end modal-->
 
 </div>
 
@@ -131,7 +133,8 @@
 
     const modal = new bootstrap.Modal(document.querySelector(".modal"));
     if(result){
+        const modalContent = document.getElementById("modalContent");
+        modalContent.textContent = result + "번 등록 성공";
         modal.show();
     }
-
 </script>
