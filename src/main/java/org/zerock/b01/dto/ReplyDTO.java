@@ -1,5 +1,7 @@
 package org.zerock.b01.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,7 +15,7 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class RelpyDTO {
+public class ReplyDTO {
 
     private Long rno;
 
@@ -25,6 +27,11 @@ public class RelpyDTO {
 
     @NotEmpty
     private  String replyer;
-    private LocalDateTime regDate, modDate;
+
+    @JsonFormat(pattern = "yyyy-MM-dd H:mm:ss")
+    private LocalDateTime regDate;
+
+    @JsonIgnore
+    private LocalDateTime modDate;
 
 }
